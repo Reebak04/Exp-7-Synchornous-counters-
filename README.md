@@ -43,46 +43,73 @@ As well as counting “up” from zero and increasing or incrementing to some pr
 This type of counter is normally referred to as a Down Counter, (CTD). In a binary or BCD down counter, the count decreases by one for each external clock pulse from some preset value. Special dual purpose IC’s such as the TTL 74LS193 or CMOS CD4510 are 4-bit binary Up or Down counters which have an additional input pin to select either the up or down count mode.
 ![image](https://user-images.githubusercontent.com/36288975/169644844-1a14e123-7228-4ed8-81a9-eb937dff4ac8.png)
 
-
 4-bit Count Down Counter
 ### Procedure
-/* write all the steps invloved */
+1.Create a new project in QuartusII software.
 
+2.Name the project as uc for upcounter and dc for down counter.
 
+3.Create a new verilog hdl file in the project file.
 
+4.Name the module as dc and uc for down counter and up counter.
+
+5.Within the module declare input and output variables.
+
+6.Create a loop using if-else with condition parameter as reset value.
+
+7.End the loop.
+
+8.End the module.
 ### PROGRAM 
 /*
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
+Developed by: Tejusve Kabeer.F
+RegisterNumber: 212222100054 
 */
-
-
-
-
-
-
+### UP COUNTER :
+```
+module sync(clk,t);
+input clk;
+output reg [0:2]t;
+always@ (posedge clk)
+begin
+t[2]=((t[1]&t[0])^t[2]);
+t[1]=t[0]^t[1];
+t[0]=1^t[0];
+end
+endmodule
+```
+### DOWN COUNTER :
+```
+module sync(clk,t);
+input clk;
+output reg [0:2]t;
+wire bar2,bar1,bar0;
+not(bar2,t[2]);
+not(bar1,t[1]);
+not(bar0,t[0]);
+always@ (posedge clk)
+begin
+t[2]=((bar1&bar0)^t[2]);
+t[1]=bar0^t[1];
+t[0]=1^t[0];
+end
+endmodule
+```
 ### RTL LOGIC UP COUNTER AND DOWN COUNTER  
-
-
-
-
-
-
-
-
-
+### UP COUNTER :
+![image](https://github.com/Reebak04/Exp-7-Synchornous-counters-/assets/118364993/6783924e-5f2a-4dcc-a8e5-9d7f1cb85d6b)
+### DOWN COUNTER :
+![image](https://github.com/Reebak04/Exp-7-Synchornous-counters-/assets/118364993/287a5e03-70b1-4c2e-bd67-3e61f6bc3db2)
 ### TIMING DIGRAMS FOR COUNTER  
-
-
-
-
-
+### UP COUNTER :
+![image](https://github.com/Reebak04/Exp-7-Synchornous-counters-/assets/118364993/4a0e34d6-730f-4485-a8e7-e4e3d4923946)
+### DOWN COUNTER :
+![image](https://github.com/Reebak04/Exp-7-Synchornous-counters-/assets/118364993/a05a7f3c-8082-4a60-b22a-6b793366c015)
 ### TRUTH TABLE 
-
-
-
-
-
-
+### UP COUNTER :
+![image](https://github.com/Reebak04/Exp-7-Synchornous-counters-/assets/118364993/dbc43956-6367-4687-a9a8-5641a4f73b0a)
+### DOWN COUNTER :
+![image](https://github.com/Reebak04/Exp-7-Synchornous-counters-/assets/118364993/af569e35-7247-4267-b96a-373240c94650)
 ### RESULTS 
+Thus, 4 bit up and down counters are implemented and its functionality is validated successfully.
