@@ -70,48 +70,52 @@ RegisterNumber: 212222100054
 */
 ### UP COUNTER :
 ```
-module sync(clk,t);
+module upc(clk,A);
 input clk;
-output reg [0:2]t;
-always@ (posedge clk)
+output reg[0:3]A;
+always@(posedge clk)
 begin
-t[2]=((t[1]&t[0])^t[2]);
-t[1]=t[0]^t[1];
-t[0]=1^t[0];
+		A[0]=((((A[1])&(A[2]))&A[3])^A[0]);
+		A[1]=(((A[2])&(A[3]))^A[1]);
+		A[2]=((A[3])^A[2]);
+		A[3]=1^A[3];
 end
 endmodule
 ```
 ### DOWN COUNTER :
 ```
-module sync(clk,t);
+module downc(clk,A);
 input clk;
-output reg [0:2]t;
-wire bar2,bar1,bar0;
-not(bar2,t[2]);
-not(bar1,t[1]);
-not(bar0,t[0]);
-always@ (posedge clk)
+output reg[0:3]A;
+always@(posedge clk)
 begin
-t[2]=((bar1&bar0)^t[2]);
-t[1]=bar0^t[1];
-t[0]=1^t[0];
+	A[0]=((((~A[1])&(~A[2]))&(~A[3]))^A[0]);
+	A[1]=(((~A[2])&(~A[3]))^A[1]);
+	A[2]=((~A[3])^A[2]);
+	A[3]=1^A[3];
 end
 endmodule
 ```
 ### RTL LOGIC UP COUNTER AND DOWN COUNTER  
 ### UP COUNTER :
-![image](https://github.com/Reebak04/Exp-7-Synchornous-counters-/assets/118364993/6783924e-5f2a-4dcc-a8e5-9d7f1cb85d6b)
+![image](https://github.com/Reebak04/Exp-7-Synchornous-counters-/assets/118364993/16147481-c78f-4d32-aca5-6fc30d2b52e1)
+
 ### DOWN COUNTER :
-![image](https://github.com/Reebak04/Exp-7-Synchornous-counters-/assets/118364993/287a5e03-70b1-4c2e-bd67-3e61f6bc3db2)
+![image](https://github.com/Reebak04/Exp-7-Synchornous-counters-/assets/118364993/b9d6393e-a7cf-434f-a6a6-f73c9783773c)
+
 ### TIMING DIGRAMS FOR COUNTER  
 ### UP COUNTER :
-![image](https://github.com/Reebak04/Exp-7-Synchornous-counters-/assets/118364993/4a0e34d6-730f-4485-a8e7-e4e3d4923946)
+![image](https://github.com/Reebak04/Exp-7-Synchornous-counters-/assets/118364993/a153688d-ee67-4e3a-b240-f0d9878ce79a)
+
 ### DOWN COUNTER :
-![image](https://github.com/Reebak04/Exp-7-Synchornous-counters-/assets/118364993/a05a7f3c-8082-4a60-b22a-6b793366c015)
+![image](https://github.com/Reebak04/Exp-7-Synchornous-counters-/assets/118364993/0861f2b8-83d5-445c-86ac-bc279b92c538)
+
 ### TRUTH TABLE 
 ### UP COUNTER :
-![image](https://github.com/Reebak04/Exp-7-Synchornous-counters-/assets/118364993/dbc43956-6367-4687-a9a8-5641a4f73b0a)
+![image](https://github.com/Reebak04/Exp-7-Synchornous-counters-/assets/118364993/319c3867-49b2-4c7a-bb28-5d511e1164f7)
+
 ### DOWN COUNTER :
-![image](https://github.com/Reebak04/Exp-7-Synchornous-counters-/assets/118364993/af569e35-7247-4267-b96a-373240c94650)
+![image](https://github.com/Reebak04/Exp-7-Synchornous-counters-/assets/118364993/baa18981-a0a2-44f2-a9ac-a1473fe83a39)
+
 ### RESULTS 
 Thus, 4 bit up and down counters are implemented and its functionality is validated successfully.
